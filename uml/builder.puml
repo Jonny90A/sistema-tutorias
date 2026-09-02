@@ -1,0 +1,29 @@
+@startuml
+
+title Patrón Builder - Sistema de Tutorías
+
+class Reserva {
+    - id : int
+    - fechaReserva : LocalDate
+    - estado : String
+    + Reserva(id, fechaReserva, estado)
+    + getId() : int
+    + getFechaReserva() : LocalDate
+    + getEstado() : String
+    + confirmar() : void
+    + cancelar() : void
+}
+
+class ReservaBuilder {
+    - id : int
+    - fechaReserva : LocalDate
+    - estado : String
+    + conId(id : int) : ReservaBuilder
+    + conFechaReserva(fecha : LocalDate) : ReservaBuilder
+    + conEstado(estado : String) : ReservaBuilder
+    + build() : Reserva
+}
+
+ReservaBuilder ..> Reserva : construye
+
+@enduml

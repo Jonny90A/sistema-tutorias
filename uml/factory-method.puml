@@ -1,0 +1,61 @@
+@startuml
+
+title Patrón Factory Method - Sistema de Tutorías
+
+interface Notificador {
+    + enviarNotificacion(mensaje : String) : void
+}
+
+class NotificadorEmail {
+    + enviarNotificacion(mensaje : String) : void
+}
+
+class NotificadorSMS {
+    + enviarNotificacion(mensaje : String) : void
+}
+
+class NotificadorWhatsApp {
+    + enviarNotificacion(mensaje : String) : void
+}
+
+class NotificadorPush {
+    + enviarNotificacion(mensaje : String) : void
+}
+
+abstract class CreadorNotificacion {
+    {abstract} + crearNotificador() : Notificador
+    + enviar(mensaje : String) : void
+}
+
+class CreadorEmail {
+    + crearNotificador() : Notificador
+}
+
+class CreadorSMS {
+    + crearNotificador() : Notificador
+}
+
+class CreadorWhatsApp {
+    + crearNotificador() : Notificador
+}
+
+class CreadorPush {
+    + crearNotificador() : Notificador
+}
+
+NotificadorEmail ..|> Notificador
+NotificadorSMS ..|> Notificador
+NotificadorWhatsApp ..|> Notificador
+NotificadorPush ..|> Notificador
+
+CreadorEmail --|> CreadorNotificacion
+CreadorSMS --|> CreadorNotificacion
+CreadorWhatsApp --|> CreadorNotificacion
+CreadorPush --|> CreadorNotificacion
+
+CreadorEmail ..> NotificadorEmail : crea
+CreadorSMS ..> NotificadorSMS : crea
+CreadorWhatsApp ..> NotificadorWhatsApp : crea
+CreadorPush ..> NotificadorPush : crea
+
+@enduml
